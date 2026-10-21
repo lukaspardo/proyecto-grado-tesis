@@ -1,0 +1,138 @@
+sonarqube analiza el codigo sin ejecutarlo
+pero hasta donde entiende lo que hace una funcion
+
+la deuda tecnica no siempre es un error
+puede funcionar bien hoy pero ser dificil cambiarlo despues
+
+ver diferencia entre code smell y deuda tecnica
+no todo smell significa que hay que arreglarlo ya
+
+llm no reemplaza sonarqube
+sonarqube encuentra cosas medibles
+llm podria explicar por que importa en ese modulo
+
+vi lo de complejidad ciclomatica
+contar caminos posibles por el codigo
+pregunta si complejidad alta significa problema siempre
+
+qwen coder
+buscar version pequeña para correr local
+si el grupo no tiene gpu toca revisar memoria y tiempo
+
+git puede servir para ver que archivos cambian mucho
+los archivos que cambian mucho y tienen varios problemas tal vez sean prioridad
+pero que cambien mucho no significa por si solo deuda tecnica
+
+un metodo largo puede estar bien o mal depende de para que sirve
+el modelo deberia recibir mas que una sola funcion
+quizas archivo completo y llamadas relacionadas
+
+hay cosas que se repiten pero no son iguales literalmente
+duplicacion de logica no necesariamente de texto
+el llm podria sugerirlo pero tambien equivocarse
+
+llm inventa explicaciones a veces
+pedirle que señale linea y fragmento donde vio el problema
+luego comparar con el codigo real
+
+buscar paper de Li Avgeriou Liang 2015
+technical debt management
+
+sonarqube tiene severidad y otras categorias
+no asumir que todo lo que marca es deuda tecnica
+revisar como calcula esfuerzo de remediacion
+
+una clase que hace demasiadas cosas god class
+para detectarla no basta siempre una regla sola
+necesita revisar responsabilidades y dependencias
+
+pregunta importante
+como demostrar que el llm mejora algo de verdad
+si solo escribe explicaciones bonitas no es suficiente
+
+se me ocurre comparar reporte normal con reporte enriquecido
+preguntar a desarrolladores cual resulta mas util
+o medir si ayuda a elegir que corregir primero
+
+priorizacion no es prediccion
+el titulo del proyecto dice predictivo
+para predecir hace falta historia del repositorio y definir que se pronostica
+con lo que tenemos apenas podemos proponer una prioridad actual
+
+modelo abierto y modelo con pesos disponibles no es lo mismo
+mirar licencia concreta de cada uno
+
+starcoder2
+qwen2 punto 5 coder
+deepseek coder
+no escoger todavia
+
+si se manda codigo privado a una api hay riesgo
+local evita enviarlo al proveedor pero igual hay que proteger logs y archivos
+
+ollama sirve para correr modelos localmente
+mirar si devuelve json consistente
+no siempre responde igual aun con el mismo prompt
+
+prompt de ejemplo
+explica este hallazgo de sonar usando el contexto del modulo
+no inventes dependencias
+si falta informacion dilo
+indica evidencia en el codigo
+
+posible salida
+hallazgo
+archivo
+lineas
+evidencia
+explicacion
+impacto posible
+recomendacion
+confianza o incertidumbre
+
+pero confianza dicha por el llm no equivale a probabilidad real
+
+vi que analisis estatico tambien usa flujo de datos y tipos
+no decir que solo busca palabras o sintaxis
+
+si pide refactorizar toca revisar pruebas
+una sugerencia que compila igual puede cambiar comportamiento
+
+riesgo de falsos positivos
+si el llm descarta una alerta valida tambien puede empeorar el analisis
+comparar con criterio de alguien que sepa del proyecto
+
+sonar primero y llm despues
+no pasar repositorio entero sin filtrar
+por costo y limite de contexto
+
+revisar articulos originales de modelos
+no fiarse de tablas con numeros que salen de otras respuestas de ia
+
+falta definir lenguaje del repositorio de prueba
+java python javascript
+las reglas disponibles cambian bastante
+
+el dashboard es la parte final
+primero hay que saber cuales datos son confiables
+no decorar resultados inventados
+
+esfuerzo de correccion no es igual a importancia del problema
+algo dificil de arreglar puede seguir siendo muy urgente
+
+me parece que el llm ayuda mas para entender y justificar
+la prioridad final podria salir de reglas y datos del proyecto
+no dejar pesos al azar
+
+preguntar si hay datos historicos en git
+si no hay historia no prometer evolucion futura de deuda
+
+fuentes para revisar
+fowler refactoring
+Li 2015 systematic mapping technical debt
+sonarsource documentacion reglas y metricas
+reportes tecnicos qwen coder y deepseek coder
+
+la pregunta central sigue siendo
+que obtiene el equipo con llm que no obtenia con sonar
+eso es lo que toca probar mas adelante
